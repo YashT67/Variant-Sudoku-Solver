@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Sudoku Solver</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="main-layout">
+        <div class="grid-wrapper">
+            <div class="canvas-container" id="canvas-container">
+                <div class="grid-container" id="sudoku-grid">
+                    </div>
+                <svg id="svg-layer"></svg>
+            </div>
+        </div>
+
+        <div class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Constraints</h2>
+                <span class="uniqueness-badge hidden" id="uniqueness-badge">UNIQUE</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="grid-size" class="dropdown-label">Grid Size</label>
+                <select id="grid-size" class="dark-dropdown glass-input">
+                    <option value="9" selected>9x9 Grid</option>
+                    <option value="6">6x6 Grid</option>
+                    <option value="4">4x4 Grid</option>
+                </select>
+            </div>
+
+            <div class="radio-grid">
+                <label class="radio-label"><input type="radio" name="constraint" value="killer"> <span>Killer / Cage</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="kropki_black"> <span>Kropki Black (Multiple)</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="kropki_white"> <span>Kropki White (Consecutive)</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="square"> <span>Square (Even)</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="circle"> <span>Circle (Odd)</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="thermo"> <span>Thermometer</span></label>
+                <label class="radio-label"><input type="radio" name="constraint" value="arrow"> <span>Arrow</span></label>
+            </div>
+
+            <div class="input-row" id="sum-container">
+                <input type="number" id="sum-input" class="sum-input glass-input" placeholder="Enter Target Sum">
+            </div>
+            
+            <button id="add-btn" class="add-btn glass-btn">➕ ADD CONSTRAINT</button>
+
+            <div class="undo-redo-row">
+                <button id="undo-btn" class="action-btn glass-btn" disabled>↩️ Undo</button>
+                <button id="redo-btn" class="action-btn glass-btn" disabled>↪️ Redo</button>
+            </div>
+
+            <div class="spacer"></div> 
+            
+            <div class="action-buttons">
+                <button id="clear-sol-btn" class="secondary-btn glass-btn">🧹 Clear Solution</button>
+                <button id="reset-btn" class="secondary-btn glass-btn">🔄 Reset Board</button>
+                <button id="solve-btn" class="solve-btn glass-btn-primary">▶ Solve Puzzle</button>
+            </div>
+        </div>
+
+        <div class="logs-sidebar glass-panel">
+            <h2 class="sidebar-title">Logical Deductions</h2>
+            <div class="logs-container" id="logs-container">
+                <p class="placeholder-log">Waiting for solver...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background decorative elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
